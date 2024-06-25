@@ -1,0 +1,14 @@
+/home/Matthew/oop2/ass1/ass1/obj/Debug/net8.0/ass1.GeneratedMSBuildEditorConfig.editorconfig
+/home/Matthew/oop2/ass1/ass1/obj/Debug/net8.0/ass1.AssemblyInfoInputs.cache
+/home/Matthew/oop2/ass1/ass1/obj/Debug/net8.0/ass1.AssemblyInfo.cs
+/home/Matthew/oop2/ass1/ass1/obj/Debug/net8.0/ass1.csproj.CoreCompileInputs.cache
+/home/Matthew/oop2/ass1/ass1/bin/Debug/net8.0/ass1
+/home/Matthew/oop2/ass1/ass1/bin/Debug/net8.0/ass1.deps.json
+/home/Matthew/oop2/ass1/ass1/bin/Debug/net8.0/ass1.runtimeconfig.json
+/home/Matthew/oop2/ass1/ass1/bin/Debug/net8.0/ass1.dll
+/home/Matthew/oop2/ass1/ass1/bin/Debug/net8.0/ass1.pdb
+/home/Matthew/oop2/ass1/ass1/obj/Debug/net8.0/ass1.dll
+/home/Matthew/oop2/ass1/ass1/obj/Debug/net8.0/refint/ass1.dll
+/home/Matthew/oop2/ass1/ass1/obj/Debug/net8.0/ass1.pdb
+/home/Matthew/oop2/ass1/ass1/obj/Debug/net8.0/ass1.genruntimeconfig.cache
+/home/Matthew/oop2/ass1/ass1/obj/Debug/net8.0/ref/ass1.dll
