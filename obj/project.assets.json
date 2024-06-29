@@ -8,19 +8,19 @@
     "net8.0": []
   },
   "packageFolders": {
-    "/home/Matthew/.nuget/packages/": {}
+    "/home/ql/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/Matthew/oop2/ass1/ass1/ass1.csproj",
+      "projectUniqueName": "/home/ql/Projects/oop2/ass1/oop2assignment1/ass1.csproj",
       "projectName": "ass1",
-      "projectPath": "/home/Matthew/oop2/ass1/ass1/ass1.csproj",
-      "packagesPath": "/home/Matthew/.nuget/packages/",
-      "outputPath": "/home/Matthew/oop2/ass1/ass1/obj/",
+      "projectPath": "/home/ql/Projects/oop2/ass1/oop2assignment1/ass1.csproj",
+      "packagesPath": "/home/ql/.nuget/packages/",
+      "outputPath": "/home/ql/Projects/oop2/ass1/oop2assignment1/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/home/Matthew/.nuget/NuGet/NuGet.Config"
+        "/home/ql/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
@@ -54,18 +54,12 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "downloadDependencies": [
-          {
-            "name": "Microsoft.AspNetCore.App.Ref",
-            "version": "[8.0.6, 8.0.6]"
-          }
-        ],
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/8.0.106/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.105/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

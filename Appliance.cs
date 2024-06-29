@@ -72,12 +72,12 @@ namespace Ass1
 
         public override string ToString()
         {
-            return $@"ItemNumber: {id}
-                    Brand: {brand}
-                    Quantity: {quantity}
-                    Wattage: {wattage}
-                    Colour: {colour}
-                    Price: {price}";
+            return $"ItemNumber: {id}\nBrand: {brand}\nQuantity: {quantity}\n" +
+                    $"Wattage: {wattage}\nColour: {colour}\nPrice: {price}";
+        }
+        public virtual string FormatForFile()
+        {
+            return $"{id};{brand};{quantity};{wattage};{colour};{price};";
         }
     }
 }

@@ -1,10 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Swoq9OJd7j1wbLxaaaxxQaFvByTjsV5zjf6+DKFUdeV5nta/e80V5g+rPVxcXwuKRMV22VrpuNXHlDObfAi+BA==",
+  "dgSpecHash": "+XUF//euazLhUNNPEmTe2nPG1eV7RNEFqYIBkd42nhqmfwI6voANSkaBhUwvqJvGsIIdIhK38ckg14n3Ldw4xg==",
   "success": true,
-  "projectFilePath": "/home/Matthew/oop2/ass1/ass1/ass1.csproj",
-  "expectedPackageFiles": [
-    "/home/Matthew/.nuget/packages/microsoft.aspnetcore.app.ref/8.0.6/microsoft.aspnetcore.app.ref.8.0.6.nupkg.sha512"
-  ],
+  "projectFilePath": "/home/ql/Projects/oop2/ass1/oop2assignment1/ass1.csproj",
+  "expectedPackageFiles": [],
   "logs": []
 }
