@@ -1,7 +1,15 @@
+/*
+ * File: Appliance.cs and Respective children
+ * Author: Matthew Biggs
+ * Date: July 1st 2024
+ * Description: File seeks to create Appliance and Children objects and apply functionality through relation with the MainMenu method
+ */
+
 namespace Ass1
 {
     public abstract class Appliance
     {
+        //all variables were set to private and then given getters and setters (when needed or thought logical to need)
         private int id;
         private string? brand;
         private int quantity;
@@ -12,12 +20,10 @@ namespace Ass1
         public int Id
         {
             get { return id; }
-            set { id = value; }
         }
         public string? Brand
         {
             get { return brand; }
-            set { brand = value; }
         }
         public int Quantity
         {
@@ -28,7 +34,6 @@ namespace Ass1
         public int Wattage
         {
             get { return wattage; }
-            set { wattage = value; }
         }
 
         public string? Colour
@@ -53,6 +58,7 @@ namespace Ass1
             this.price = price;
         }
 
+        //Very simply checks for quantity being above 0
         public bool IsAvailable()
         {
             if (quantity > 0)
@@ -65,16 +71,19 @@ namespace Ass1
             }
         }
 
+        //Decrements quantity
         public void Checkout()
         {
             quantity = quantity - 1;
         }
 
+        //ToString used as a baseline for all other classes
         public override string ToString()
         {
             return $"ItemNumber: {id}\nBrand: {brand}\nQuantity: {quantity}\n" +
                     $"Wattage: {wattage}\nColour: {colour}\nPrice: {price}";
         }
+        //Created a virtual template for other children classes to build on since this Parent class would never run a Format.
         public virtual string FormatForFile()
         {
             return $"{id};{brand};{quantity};{wattage};{colour};{price};";

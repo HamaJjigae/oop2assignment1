@@ -2,10 +2,19 @@
 {
     class Program
     {
+        //instantiates variables to be used for the rest of the methods
+        static List<Appliance> applianceList = new List<Appliance>();
+        static string filePath = Path.Combine(Environment.CurrentDirectory, "appliances.txt");
+        //main that runs the Program methods
         static void Main(string[] args)
         {
-            List<Appliance> applianceList = new List<Appliance>();
-            string filePath = Path.Combine(Environment.CurrentDirectory, "appliances.txt");
+
+            applianceList = LoadApplianceData();
+            MainMenu(applianceList, filePath);
+        }
+        //method that loads the appliance data from the txt file and outputs that to applianceList
+        static List<Appliance> LoadApplianceData()
+        {
             try
             {
                 string[] lines = File.ReadAllLines(filePath);
@@ -21,6 +30,7 @@
                         if (values.Length <= 7)
                         {
                             Console.WriteLine($"Error at line {lineNumber}: Invalid Format - Insufficient Lines");
+                            continue;
                         }
 
                         try
@@ -41,6 +51,7 @@
                                 int width = int.Parse(values[8]);
                                 appliance = new Refrigerator(id, brand, quantity, wattage, colour, price, doors, height, width);
                             }
+                            //added value checking for consistency with this and the following appliance types
                             else if (type == '2' && (values[7] == "18" || values[7] == "24"))
                             {
                                 string grade = values[6];
@@ -61,6 +72,7 @@
                             }
                             else
                             {
+                                //simple format checking
                                 Console.WriteLine($"Error at line {lineNumber}: Invalid Format - Unexpected or Insufficient Information");
                                 continue;
                             }
@@ -69,20 +81,30 @@
                         }
                         catch (FormatException)
                         {
+                            // FormatException checks, skips line if error is called
                             Console.WriteLine($"Error at line {lineNumber}: Invalid Format - Incorrect Data Type");
+                            continue;
                         }
                         catch (IndexOutOfRangeException)
                         {
+                            // Index check that skips similar to previous
                             Console.WriteLine($"Error at line {lineNumber}: Invalid Format - Missing Data Fields");
+                            continue;
                         }
                     }
                 }
             }
             catch (IOException ex)
             {
+                //IOException catch
                 Console.WriteLine($"Error reading file: {ex.Message}");
             }
-
+            return applianceList;
+        }
+        //Method that runs the Main execution of our program
+        static void MainMenu(List<Appliance> applianceList, string filePath)
+        {
+            //infinite loop
             for (; ; )
             {
                 Console.WriteLine("Welcome to Modern Appliances!");
@@ -100,23 +122,28 @@
                 {
                     Console.WriteLine("Enter the number of an appliance:  ");
                     Console.SetCursorPosition(Console.CursorLeft + 4, Console.CursorTop);
-                    int appliance_query = int.Parse(Console.ReadLine());
-                    //Below is going to check if appliance with that # exists
-                    Appliance selectedAppliance = applianceList.Find(appliance => appliance.Id == appliance_query);
-                    if (selectedAppliance == null)
+                    string? input = Console.ReadLine()?.Trim();
+                    if (int.TryParse(input, out int appliance_query))
                     {
-                        Console.WriteLine("No appliances found with that item number.\n\n\n");
-                    }
-                    else
-                    {
-                        if (selectedAppliance.IsAvailable())
+                        //Below is going to check if appliance with that # exists
+                        Appliance? selectedAppliance = applianceList.Find(appliance => appliance.Id == appliance_query);
+                        if (selectedAppliance == null)
                         {
-                            selectedAppliance.Checkout();
-                            Console.WriteLine($"Appliance \"{selectedAppliance.Id}\" has been checked out.\n\n\n");
+                            Console.WriteLine("No appliances found with that item number.\n\n\n");
                         }
                         else
                         {
-                            Console.WriteLine("The appliance is not available to be checked out.\n\n\n");
+                            // calls isAvailable method from appliance class to theck
+                            if (selectedAppliance.IsAvailable())
+                            {
+                                //calls Checkout method to decrement amount
+                                selectedAppliance.Checkout();
+                                Console.WriteLine($"Appliance \"{selectedAppliance.Id}\" has been checked out.\n\n\n");
+                            }
+                            else
+                            {
+                                Console.WriteLine("The appliance is not available to be checked out.\n\n\n");
+                            }
                         }
                     }
                 }
@@ -124,12 +151,16 @@
                 {
                     Console.WriteLine("Enter brand to search for:");
                     Console.SetCursorPosition(Console.CursorLeft + 4, Console.CursorTop);
-                    string? brand_query = Console.ReadLine();
-                    Console.WriteLine("Matching Appliances:");
-                    List<Appliance> filteredAppliance = applianceList.FindAll(appliance => appliance.Brand == brand_query);
-                    foreach (Appliance appliance in filteredAppliance)
+                    string? brand_query = Console.ReadLine()?.ToLower().Trim();
+                    if (brand_query != null)
                     {
-                        Console.WriteLine($"{appliance.ToString()}\n\n\n");
+                        Console.WriteLine("Matching Appliances:");
+                        //starts to use FindAll here instead of Find to search throughout the entire list based on criterea. Also makes it case insensitive and null-safe
+                        List<Appliance> filteredAppliance = applianceList.FindAll(appliance => appliance.Brand != null && appliance.Brand.ToLower() == brand_query);
+                        foreach (Appliance appliance in filteredAppliance)
+                        {
+                            Console.WriteLine($"{appliance.ToString()}\n\n\n");
+                        }
                     }
                 }
                 else if (option_select == "3")
@@ -146,49 +177,77 @@
                     {
                         Console.WriteLine("Enter number of doors: 2 (double door), 3 (three doors or 4 (four doors):");
                         Console.SetCursorPosition(Console.CursorLeft + 4, Console.CursorTop);
-                        int doorQuery = int.Parse(Console.ReadLine());
-                        Console.WriteLine("Matching refrigerators:");
-                        List<Refrigerator> filteredFridge = applianceList.OfType<Refrigerator>().Where(fridge => fridge.Doors == doorQuery).ToList();
-                        foreach (Refrigerator fridge in filteredFridge)
+                        string? input = Console.ReadLine()?.Trim();
+                        if (int.TryParse(input, out int door_query))
                         {
-                            Console.WriteLine($"{fridge.ToString()}\n\n\n");
+                            Console.WriteLine("Matching refrigerators:");
+                            //below could probably have be written as FindAll but Where operates a little cleaner and FindAll was slower
+                            List<Refrigerator> filteredFridge = applianceList.OfType<Refrigerator>().Where(fridge => fridge.Doors == door_query).ToList();
+                            foreach (Refrigerator fridge in filteredFridge)
+                            {
+                                Console.WriteLine($"{fridge.ToString()}\n\n\n");
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("Invalid input. Please enter a valid number of doors. \n\n\n");
                         }
                     }
                     else if (appliance_query == "2")
                     {
                         Console.WriteLine("Enter the battery voltage value. 18 V (low) or 24 V (high)");
                         Console.SetCursorPosition(Console.CursorLeft + 4, Console.CursorTop);
-                        int voltQuery = int.Parse(Console.ReadLine());
-                        Console.WriteLine("Matching vacuums:");
-                        List<Vacuum> filteredVac = applianceList.OfType<Vacuum>().Where(vac => vac.BatteryVoltage == voltQuery).ToList();
-                        foreach (Vacuum vac in filteredVac)
+                        string? input = Console.ReadLine()?.Trim();
+                        //adds a little nullcheck for the input and trims responses as previous did.
+                        if (int.TryParse(input, out int volt_query) && (volt_query == 18 || volt_query == 24))
                         {
-                            Console.WriteLine($"{vac.ToString()}\n\n\n");
+                            Console.WriteLine("Matching vacuums:");
+                            List<Vacuum> filteredVac = applianceList.OfType<Vacuum>().Where(vac => vac.BatteryVoltage == volt_query).ToList();
+                            foreach (Vacuum vac in filteredVac)
+                            {
+                                Console.WriteLine($"{vac.ToString()}\n\n\n");
 
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("Invalid input. Please enter a valid amount of voltage. \n\n\n");
                         }
                     }
                     else if (appliance_query == "3")
                     {
                         Console.WriteLine("Room where the microwave will be installed: K (Kitchen) or W (work site):");
                         Console.SetCursorPosition(Console.CursorLeft + 4, Console.CursorTop);
-                        string? roomQuery = Console.ReadLine()?.ToUpper();
-                        Console.WriteLine("Matching microwaves:");
-                        List<Microwave> filteredMicro = applianceList.OfType<Microwave>().Where(micro => micro.RoomType == roomQuery).ToList();
-                        foreach (Microwave micro in filteredMicro)
+                        //below made case-insensitive
+                        string? room_query = Console.ReadLine()?.ToUpper().Trim();
+                        if (room_query == "K" || room_query == "W")
                         {
-                            Console.WriteLine($"{micro.ToString()}\n\n\n");
+                            Console.WriteLine("Matching microwaves:");
+                            List<Microwave> filteredMicro = applianceList.OfType<Microwave>().Where(micro => micro.RoomType == room_query).ToList();
+                            foreach (Microwave micro in filteredMicro)
+                            {
+                                Console.WriteLine($"{micro.ToString()}\n\n\n");
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("Please enter K or W for the room");
                         }
                     }
                     else if (appliance_query == "4")
                     {
                         Console.WriteLine("Enter the sound rating of the dishwasher: Qt (Quietest), Qr (Quieter), Qu(Quiet) or M (Moderate):");
                         Console.SetCursorPosition(Console.CursorLeft + 4, Console.CursorTop);
-                        string? soundQuery = Console.ReadLine();
-                        Console.WriteLine("matching dishwashers:");
-                        List<Dishwasher> filteredDw = applianceList.OfType<Dishwasher>().Where(dw => dw.SoundRating == soundQuery).ToList();
-                        foreach (Dishwasher dw in filteredDw)
+                        //again made case-insensitive and trim. small note is all .Wheres were changed in Final Version to have null checks. Mainly to remove possible null dependencies.
+                        string? sound_query = Console.ReadLine()?.Trim().ToLower();
+                        if (sound_query == "qt" || sound_query == "qr" || sound_query == "qu" || sound_query == "m")
                         {
-                            Console.WriteLine($"{dw.ToString()}\n\n\n");
+                            Console.WriteLine("Matching dishwashers:");
+                            List<Dishwasher> filteredDw = applianceList.OfType<Dishwasher>().Where(dw => dw.SoundRating != null && dw.SoundRating.ToLower() == sound_query).ToList();
+                            foreach (Dishwasher dw in filteredDw)
+                            {
+                                Console.WriteLine($"{dw.ToString()}\n\n\n");
+                            }
                         }
                     }
                     else
@@ -198,32 +257,42 @@
                 }
                 else if (option_select == "4")
                 {
+                    //I really like this because it reminded me of TwoSum. We just create a new Random and store each previously operated random into a Hashset to make sure there aren't duplicates.
                     Random random = new Random();
                     HashSet<int> usedIndices = new HashSet<int>();
                     Console.WriteLine("Enter number of appliances:");
                     Console.SetCursorPosition(Console.CursorLeft + 4, Console.CursorTop);
-                    int random_query = int.Parse(Console.ReadLine());
-                    Console.WriteLine("Random appliances:");
-                    for (int i = 0; i < random_query; i++)
+                    string? input = Console.ReadLine();
+                    if (int.TryParse(input, out int random_query) && random_query > 0)
                     {
-                        int randomIndex;
-                        do
+                        Console.WriteLine("Random appliances:");
+                        for (int i = 0; i < random_query; i++)
                         {
-                            randomIndex = random.Next(applianceList.Count());
-                        } while (usedIndices.Contains(randomIndex));
+                            int randomIndex;
+                            do
+                            {
+                                randomIndex = random.Next(applianceList.Count());
+                            } while (usedIndices.Contains(randomIndex));
 
-                        usedIndices.Add(randomIndex);
-                        Console.WriteLine($"{applianceList[randomIndex].ToString()}\n\n\n");
+                            usedIndices.Add(randomIndex);
+                            Console.WriteLine($"{applianceList[randomIndex].ToString()}\n\n\n");
+                        }
                     }
                 }
                 else if (option_select == "5")
                 {
+                    //below saves file to initiate filePath. Added applianceMaster in folder to allow for non-updated files.
+                    List<string> formattedList = new List<string>();
+                    foreach (Appliance appliance in applianceList)
+                    {
+                        formattedList.Add(appliance.FormatForFile());
+                    }
+                    File.WriteAllLines(filePath, formattedList);
                     break;
                 }
                 else
                 {
                     Console.WriteLine("Invalid Input");
-
                 }
             }
         }

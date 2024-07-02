@@ -1,15 +1,21 @@
 namespace Ass1
 {
+    //see comments for refrigerator as same applies here.
     public class Dishwasher : Appliance
     {
         private string feature;
-        public string SoundRating;
+        private string soundRating;
+
+        public string SoundRating
+        {
+            get { return soundRating; }
+        }
 
         public Dishwasher(int id, string? brand, int quantity, int wattage, string? colour, float price, string feature, string soundRating)
             : base(id, brand, quantity, wattage, colour, price)
         {
             this.feature = feature;
-            this.SoundRating = soundRating;
+            this.soundRating = soundRating;
         }
         public override string ToString()
         {
@@ -26,7 +32,7 @@ namespace Ass1
 
         public override string FormatForFile()
         {
-            return $"{base.FormatForFile()};{feature};{SoundRating};";
+            return $"{base.FormatForFile()}{feature};{SoundRating};";
         }
     }
 }

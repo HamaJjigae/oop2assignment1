@@ -1,0 +1,337 @@
+: dotnet build
+MSBuild version 17.8.5+b5265ef37 for .NET
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+  ass1 -> /home/ql/Projects/oop2/ass1/oop2assignment1/bin/Debug/net8.0/ass1.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:02.25
+: dotnet run
+Welcome to Modern Appliances!
+How may we assist you?
+1 - Check out appliance
+2 - Find appliances by brand
+3 - Display appliances by type
+4 - Produce random appliance list
+5 - Save & exit
+Enter option:
+    1
+Enter the number of an appliance:
+    255131796
+Appliance "255131796" has been checked out.
+
+
+
+Welcome to Modern Appliances!
+How may we assist you?
+1 - Check out appliance
+2 - Find appliances by brand
+3 - Display appliances by type
+4 - Produce random appliance list
+5 - Save & exit
+Enter option:
+    1
+Enter the number of an appliance:
+    143826003
+The appliance is not available to be checked out.
+
+
+
+Welcome to Modern Appliances!
+How may we assist you?
+1 - Check out appliance
+2 - Find appliances by brand
+3 - Display appliances by type
+4 - Produce random appliance list
+5 - Save & exit
+Enter option:
+    1
+Enter the number of an appliance:
+    1234567895
+No appliances found with that item number.
+
+
+
+Welcome to Modern Appliances!
+How may we assist you?
+1 - Check out appliance
+2 - Find appliances by brand
+3 - Display appliances by type
+4 - Produce random appliance list
+5 - Save & exit
+Enter option:
+    2
+Enter brand to search for:
+    Tefal
+Matching Appliances:
+ItemNumber: 535981394
+Brand: Tefal
+Quantity: 90
+Wattage: 700
+Colour: bronze
+Price: 320
+Feature: Third Rack
+SoundRating: Quietest
+
+
+
+ItemNumber: 243074424
+Brand: Tefal
+Quantity: 61
+Wattage: 4000
+Colour: black
+Price: 760
+Grade: Residential
+Battery Voltage: Low
+
+
+
+Welcome to Modern Appliances!
+How may we assist you?
+1 - Check out appliance
+2 - Find appliances by brand
+3 - Display appliances by type
+4 - Produce random appliance list
+5 - Save & exit
+Enter option:
+    3
+Appliance Types
+1 - Refrigerators
+2 - Vacuums
+3 - Microwaves
+4 - Dishwashers
+
+Enter type of appliance:
+    1
+Enter number of doors: 2 (double door), 3 (three doors or 4 (four doors):
+    3
+Matching refrigerators:
+ItemNumber: 146947171
+Brand: Black & Decker
+Quantity: 112
+Wattage: 1800
+Colour: grey
+Price: 1800
+Number of Doors: Three Doors
+Height: 70
+Width: 31
+
+
+
+ItemNumber: 172911121
+Brand: Philips
+Quantity: 144
+Wattage: 700
+Colour: black
+Price: 3100
+Number of Doors: Three Doors
+Height: 71
+Width: 30
+
+
+
+Welcome to Modern Appliances!
+How may we assist you?
+1 - Check out appliance
+2 - Find appliances by brand
+3 - Display appliances by type
+4 - Produce random appliance list
+5 - Save & exit
+Enter option:
+    3
+Appliance Types
+1 - Refrigerators
+2 - Vacuums
+3 - Microwaves
+4 - Dishwashers
+
+Enter type of appliance:
+    2
+Enter the battery voltage value. 18 V (low) or 24 V (high)
+    18
+Matching vacuums:
+ItemNumber: 255131796
+Brand: Black & Decker
+Quantity: 54
+Wattage: 1500
+Colour: white
+Price: 500
+Grade: Residential
+Battery Voltage: Low
+
+
+
+ItemNumber: 263788832
+Brand: Hoover
+Quantity: 59
+Wattage: 600
+Colour: black
+Price: 750
+Grade: Residential
+Battery Voltage: Low
+
+
+
+ItemNumber: 231784690
+Brand: Russell Hobbs
+Quantity: 155
+Wattage: 175
+Colour: grey
+Price: 380
+Grade: Residential
+Battery Voltage: Low
+
+
+
+ItemNumber: 243074424
+Brand: Tefal
+Quantity: 61
+Wattage: 4000
+Colour: black
+Price: 760
+Grade: Residential
+Battery Voltage: Low
+
+
+
+ItemNumber: 240201796
+Brand: Dyson
+Quantity: 81
+Wattage: 1050
+Colour: white
+Price: 290
+Grade: Residential
+Battery Voltage: Low
+
+
+
+Welcome to Modern Appliances!
+How may we assist you?
+1 - Check out appliance
+2 - Find appliances by brand
+3 - Display appliances by type
+4 - Produce random appliance list
+5 - Save & exit
+Enter option:
+    3
+Appliance Types
+1 - Refrigerators
+2 - Vacuums
+3 - Microwaves
+4 - Dishwashers
+
+Enter type of appliance:
+    3
+Room where the microwave will be installed: K (Kitchen) or W (work site):
+    W
+Matching microwaves:
+ItemNumber: 328237584
+Brand: Miele
+Quantity: 90
+Wattage: 1200
+Colour: bronze
+Price: 250.23
+Capacity: 2.1
+Room Type: Work Site
+
+
+
+ItemNumber: 333607621
+Brand: Vax
+Quantity: 113
+Wattage: 440
+Colour: silver
+Price: 123.99
+Capacity: 1.6
+Room Type: Work Site
+
+
+
+Welcome to Modern Appliances!
+How may we assist you?
+1 - Check out appliance
+2 - Find appliances by brand
+3 - Display appliances by type
+4 - Produce random appliance list
+5 - Save & exit
+Enter option:
+    3
+Appliance Types
+1 - Refrigerators
+2 - Vacuums
+3 - Microwaves
+4 - Dishwashers
+
+Enter type of appliance:
+    4
+Enter the sound rating of the dishwasher: Qt (Quietest), Qr (Quieter), Qu(Quiet) or M (Moderate):
+    M
+Matching dishwashers:
+ItemNumber: 571522655
+Brand: Philips
+Quantity: 228
+Wattage: 440
+Colour: grey
+Price: 390
+Feature: Finger Print Resistant
+SoundRating: Moderate
+
+
+
+ItemNumber: 493374445
+Brand: Philips
+Quantity: 125
+Wattage: 1650
+Colour: silver
+Price: 510
+Feature: Clean with Steam
+SoundRating: Moderate
+
+
+
+Welcome to Modern Appliances!
+How may we assist you?
+1 - Check out appliance
+2 - Find appliances by brand
+3 - Display appliances by type
+4 - Produce random appliance list
+5 - Save & exit
+Enter option:
+    4
+Enter number of appliances:
+    2
+Random appliances:
+ItemNumber: 587065284
+Brand: Kenwood
+Quantity: 74
+Wattage: 1010
+Colour: silver
+Price: 430
+Feature: Clean with Steam
+SoundRating: Quiet
+
+
+
+ItemNumber: 231784690
+Brand: Russell Hobbs
+Quantity: 155
+Wattage: 175
+Colour: grey
+Price: 380
+Grade: Residential
+Battery Voltage: Low
+
+
+
+Welcome to Modern Appliances!
+How may we assist you?
+1 - Check out appliance
+2 - Find appliances by brand
+3 - Display appliances by type
+4 - Produce random appliance list
+5 - Save & exit
+Enter option:
+    5
